@@ -1,7 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=120)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     opening_time = models.TimeField()
     closing_time = models.TimeField()
@@ -9,3 +12,17 @@ class Restaurant(models.Model):
 
     def __str__(self):
     	return self.name
+
+
+class Item(models.Model):
+	name = models.CharField(max_length=120)
+	description = models.TextField()
+	price = models.IntegerField()
+	restuarant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+
+
+	def __str__(self):
+		return self.name
+
+
+

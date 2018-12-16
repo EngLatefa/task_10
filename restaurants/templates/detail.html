@@ -6,7 +6,7 @@
 
 <br>
 <div class="card">
-  <h5 class="card-header">Restaurant Info</h5>
+  <h5 class="card-header">restaurant Info</h5>
   {% if restaurant.logo %}
     <img class="card-img-top" src="{{restaurant.logo.url}}" alt="Hey Noob, look at me...">
   {% endif %}
@@ -15,12 +15,22 @@
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
+    <p>************************************************************************************</p>
+    {% for item in items %}
+    <p class="card-text">{{item.name|linebreaks}}</p>
+    <p class="card-text">{{item.description|linebreaks}}</p>
+    <p class="card-text">{{item.price|linebreaks}}</p>
+    {% endfor %}}
+
     <div class="row text-center">
         <div class="col-md-6">
             <a href="{% url 'restaurant-update' restaurant.id %}" class="btn btn-outline-primary btn-block">Update</a>
         </div>
         <div class="col-md-6">
             <a href="{% url 'restaurant-delete' restaurant.id %}" class="btn btn-outline-danger btn-block">Delete</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-primary btn-block">Add item</a>
         </div>
     </div>
   </div>
